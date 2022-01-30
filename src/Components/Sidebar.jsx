@@ -8,7 +8,7 @@ import CartButtons from "./CartButtons";
 import { useUserContext } from "../Context/user_context";
 
 const Sidebar = () => {
-   const { isSidebarOpen } = useProductsContext();
+   const { isSidebarOpen, closeSidebar } = useProductsContext();
    return (
       <SidebarContainer>
          <aside
@@ -16,18 +16,26 @@ const Sidebar = () => {
          >
             <div className="sidebar-header">
                <img src={logo} className="logo" alt="Comfy Sloth" />
-               <button type="button" className="close-btn">
+               <button
+                  type="button"
+                  className="close-btn"
+                  onClick={closeSidebar}
+               >
                   <FaTimes />
                </button>
             </div>
             <ul className="links">
                {links.map(({ id, text, url }) => (
                   <li key={id}>
-                     <Link to={url}>{text}</Link>
+                     <Link onClick={closeSidebar} to={url}>
+                        {text}
+                     </Link>
                   </li>
                ))}
                <li>
-                  <Link to="/checkout">Checkout</Link>
+                  <Link onClick={closeSidebar} to="/checkout">
+                     Checkout
+                  </Link>
                </li>
             </ul>
             <CartButtons />
