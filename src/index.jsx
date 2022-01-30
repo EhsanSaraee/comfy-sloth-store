@@ -9,4 +9,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 
 const rootElement = document.getElementById("root");
 
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(
+   <ProductsProvider>
+      <App />
+   </ProductsProvider>,
+   rootElement
+);
