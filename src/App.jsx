@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Navbar, Sidebar } from "./components";
+import { Footer, Navbar, Sidebar } from "./Components";
 import {
    About,
    Cart,
@@ -24,6 +24,7 @@ const App = () => {
             <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<Error />} />
          </Routes>
+         <Footer />
       </BrowserRouter>
    );
 };
