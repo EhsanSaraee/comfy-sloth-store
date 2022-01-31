@@ -11,11 +11,16 @@ const Contact = () => {
                   Ipsum fugit provident labore illo cumque veniam fuga repellat
                   quaerat voluptatibus minima.
                </p>
-               <form className="contact-form">
+               <form
+                  className="contact-form"
+                  action="https://formspree.io/f/xrgjppbb"
+                  method="POST"
+               >
                   <input
                      type="email"
                      className="form-input"
                      placeholder="enter email"
+                     name="_replyto"
                   />
                   <button type="submit" className="submit-btn">
                      subscribe
