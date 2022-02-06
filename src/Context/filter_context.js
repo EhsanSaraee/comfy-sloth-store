@@ -15,7 +15,8 @@ import { useProductsContext } from './products_context';
 const initialState = {
    all_products: [],
    filtered_products: [],
-   grid_view: true,
+   grid_view: false,
+   sort: 'price-lowest',
 };
 
 const FilterContext = createContext();
@@ -32,8 +33,15 @@ export const FilterProvider = ({ children }) => {
 
    const setListView = () => dispatch({ type: SET_LISTVIEW });
 
+   const updateSort = (event) => {
+      const value = event.target.value;
+      dispatch({ type: UPDATE_SORT, payload: value });
+   };
+
    return (
-      <FilterContext.Provider value={{ ...state, setGridView, setListView }}>
+      <FilterContext.Provider
+         value={{ ...state, setGridView, setListView, updateSort }}
+      >
          {children}
       </FilterContext.Provider>
    );
