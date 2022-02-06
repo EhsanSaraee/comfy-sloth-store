@@ -1,5 +1,5 @@
-import { useEffect, useContext, useReducer, createContext } from "react";
-import reducer from "../Reducers/filter_reducer";
+import { useEffect, useContext, useReducer, createContext } from 'react';
+import reducer from '../Reducers/filter_reducer';
 import {
    LOAD_PRODUCTS,
    SET_GRIDVIEW,
@@ -9,14 +9,24 @@ import {
    UPDATE_FILTERS,
    FILTER_PRODUCTS,
    CLEAR_FILTERS,
-} from "../actions";
-import { useProductsContext } from "./products_context";
+} from '../actions';
+import { useProductsContext } from './products_context';
 
-const initialState = {};
+const initialState = {
+   all_products: [],
+   filtered_products: [],
+};
 
 const FilterContext = createContext();
 
 export const FilterProvider = ({ children }) => {
+   const { products } = useProductsContext();
+   const [state, dispatch] = useReducer(reducer, initialState);
+
+   useEffect(() => {
+      dispatch({ type: LOAD_PRODUCTS, payload: products });
+   }, [products]);
+
    return (
       <FilterContext.Provider value="filter context">
          {children}
