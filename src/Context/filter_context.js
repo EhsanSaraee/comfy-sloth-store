@@ -56,6 +56,9 @@ export const FilterProvider = ({ children }) => {
    const updateFilters = (event) => {
       let name = event.target.name;
       let value = event.target.value;
+      if (name === 'category') {
+         value = event.target.textContent;
+      }
       dispatch({ type: UPDATE_FILTERS, payload: { name, value } });
    };
 
