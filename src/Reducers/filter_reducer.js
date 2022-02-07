@@ -51,6 +51,19 @@ const filter_reducer = (state, action) => {
       case UPDATE_FILTERS:
          const { name, value } = payload;
          return { ...state, filters: { ...state.filters, [name]: value } };
+      case CLEAR_FILTERS:
+         return {
+            ...state,
+            filters: {
+               ...state.filters,
+               text: '',
+               company: 'all',
+               category: 'all',
+               color: 'all',
+               shipping: false,
+               price: state.filters.max_price,
+            },
+         };
       default:
          return state;
    }
