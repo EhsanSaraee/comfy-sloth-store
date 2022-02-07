@@ -51,6 +51,20 @@ const filter_reducer = (state, action) => {
       case UPDATE_FILTERS:
          const { name, value } = payload;
          return { ...state, filters: { ...state.filters, [name]: value } };
+      case FILTER_PRODUCTS:
+         // destructuring
+         const { all_products } = state;
+         const { text, category, company, color, price, shipping } =
+            state.filters;
+         // cloning
+         let tempProducts = [...all_products];
+         // filtering
+         if (text) {
+            tempProducts = tempProducts.filter((product) =>
+               product.name.toLowerCase().startsWith(text)
+            );
+         }
+         return { ...state, filtered_products: tempProducts };
       case CLEAR_FILTERS:
          return {
             ...state,
