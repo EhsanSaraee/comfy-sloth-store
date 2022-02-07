@@ -12,7 +12,9 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
    <ProductsProvider>
       <FilterProvider>
-         <App />
+         <CartProvider>
+            <App />
+         </CartProvider>
       </FilterProvider>
    </ProductsProvider>,
    rootElement
