@@ -1,13 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useContext, useEffect, useState, createContext } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
-const UserContext = React.createContext()
+const UserContext = createContext();
+
 export const UserProvider = ({ children }) => {
-  return (
-    <UserContext.Provider value='user context'>{children}</UserContext.Provider>
-  )
-}
+   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+   const [myUser, setMyUser] = useState(null);
+
+   return (
+      <UserContext.Provider value={{ logout, loginWithRedirect, myUser }}>
+         {children}
+      </UserContext.Provider>
+   );
+};
 // make sure use
-export const useUserContext = () => {
-  return useContext(UserContext)
-}
+export const useUserContext = () => useContext(UserContext);
