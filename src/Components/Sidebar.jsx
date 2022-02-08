@@ -1,18 +1,20 @@
-import logo from "../Assets/logo.svg";
-import { Link } from "react-router-dom";
-import { useProductsContext } from "../Context/products_context";
-import { FaTimes } from "react-icons/fa";
-import { links } from "../Utils/constants";
-import styled from "styled-components";
-import CartButtons from "./CartButtons";
-import { useUserContext } from "../Context/user_context";
+import logo from '../Assets/logo.svg';
+import { Link } from 'react-router-dom';
+import { useProductsContext } from '../Context/products_context';
+import { FaTimes } from 'react-icons/fa';
+import { links } from '../Utils/constants';
+import styled from 'styled-components';
+import CartButtons from './CartButtons';
+import { useUserContext } from '../Context/user_context';
 
 const Sidebar = () => {
    const { isSidebarOpen, closeSidebar } = useProductsContext();
+   const { myUser } = useUserContext();
+
    return (
       <SidebarContainer>
          <aside
-            className={`${isSidebarOpen ? "sidebar show-sidebar" : "sidebar"}`}
+            className={`${isSidebarOpen ? 'sidebar show-sidebar' : 'sidebar'}`}
          >
             <div className="sidebar-header">
                <img src={logo} className="logo" alt="Comfy Sloth" />
@@ -32,11 +34,13 @@ const Sidebar = () => {
                      </Link>
                   </li>
                ))}
-               <li>
-                  <Link onClick={closeSidebar} to="/checkout">
-                     Checkout
-                  </Link>
-               </li>
+               {myUser && (
+                  <li>
+                     <Link onClick={closeSidebar} to="/checkout">
+                        Checkout
+                     </Link>
+                  </li>
+               )}
             </ul>
             <CartButtons />
          </aside>
