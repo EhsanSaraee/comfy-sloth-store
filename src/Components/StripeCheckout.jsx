@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
-import styled from "styled-components";
-import { loadStripe } from "@stripe/stripe-js";
+import { useState, useEffect } from 'react';
+import styled from 'styled-components';
+import { loadStripe } from '@stripe/stripe-js';
 import {
    CardElement,
    useStripe,
    Elements,
    useElements,
-} from "@stripe/react-stripe-js";
-import axios from "axios";
-import { useCartContext } from "../Context/cart_context";
-import { useUserContext } from "../Context/user_context";
-import { formatPrice } from "../Utils/helpers";
-import { useHistory } from "react-router-dom";
+} from '@stripe/react-stripe-js';
+import axios from 'axios';
+import { useCartContext } from '../Context/cart_context';
+import { useUserContext } from '../Context/user_context';
+import { formatPrice } from '../Utils/helpers';
+import { useHistory } from 'react-router-dom';
 
 const CheckoutForm = () => {
    return <h4>hello from Stripe Checkout </h4>;
@@ -122,7 +122,7 @@ const Wrapper = styled.section`
    .spinner:before,
    .spinner:after {
       position: absolute;
-      content: "";
+      content: '';
    }
    .spinner:before {
       width: 10.4px;
