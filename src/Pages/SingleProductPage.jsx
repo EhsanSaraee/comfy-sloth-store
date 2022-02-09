@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useProductsContext } from '../Context/products_context';
