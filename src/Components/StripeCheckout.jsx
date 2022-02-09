@@ -11,11 +11,41 @@ import axios from 'axios';
 import { useCartContext } from '../Context/cart_context';
 import { useUserContext } from '../Context/user_context';
 import { formatPrice } from '../Utils/helpers';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = () => {
+   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
+   const { myUser } = useUserContext();
+   const navigate = useNavigate();
+   // STRIPE STUFF
+   const [succeeded, setSucceeded] = useState(false);
+   const [error, setError] = useState(null);
+   const [processing, setProcessing] = useState('');
+   const [disabled, setDisabled] = useState(true);
+   const [clientSecret, setClientSecret] = useState('');
+   const stripe = useStripe();
+   const elements = useElements();
+
+   const cardStyle = {
+      style: {
+         base: {
+            color: '#32325d',
+            fontFamily: 'Arial, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+               color: '#32325d',
+            },
+         },
+         invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a',
+         },
+      },
+   };
+
    return <h4>hello from Stripe Checkout </h4>;
 };
 
